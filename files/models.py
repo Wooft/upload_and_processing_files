@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Модель, которая содержит данные о загруженных файлах
 class File(models.Model):
     file = models.FileField(verbose_name='File')
     uploaded_at = models.DateTimeField(auto_now_add=True, verbose_name='Загружен')
