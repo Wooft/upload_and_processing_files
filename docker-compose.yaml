@@ -4,7 +4,7 @@ services:
   files:
     build: .
     env_file:
-      - .env-dev
+      - .env
 #    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
     command: >
       sh -c "python manage.py collectstatic --noinput &&
@@ -20,7 +20,7 @@ services:
   postgres:
     image: postgres
     env_file:
-      - .env-dev
+      - .env
     hostname: db
     restart: always
     environment:
@@ -47,7 +47,7 @@ services:
     build: .
     container_name: celery-worker
     env_file:
-      - .env-dev
+      - .env
     restart: always
     command: python -m celery -A app worker -l info
     depends_on:
