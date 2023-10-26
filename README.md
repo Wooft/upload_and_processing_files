@@ -1,1 +1,14 @@
-# upload_and_processing_files
+# This is a test task for OOO "PICASSO" company
+
+Сервис загурзки файлов  
+Доступны два эндпойнта:
+ - /files/ - возвращает список загруженных файлов
+ - /upload/ - используется для загрузки файла на сервер. Файл сохраняется в папку "media", указанную в settings проекта  
+
+Для развертывания проекта используется Docker-Compose
+Инструкция по развертыванию:
+ - клонировать репозиторий
+ - для указания основных параметров запуска используется файл .env в корневом каталоге проекта. Должны быть указаны следующие параметры:
+[SECRET_KEY, DEBUG, ALLOWED_HOSTS, DB_ENGINE, DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, CELERY_BROKER_URL, CELERY_RESULT_BACKEND]  
+ - По умолчанию редусмотрено использование базы данных postgresql
+ - Запуск проекта осуществляется при помощи команды "docker compose up"
