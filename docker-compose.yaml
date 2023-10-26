@@ -34,6 +34,17 @@ services:
     networks:
       - net
 
+  nginx:
+    build: ./nginx
+    ports:
+      - 6060:80
+    depends_on:
+      - celery-worker
+    volumes:
+      - ./static:/static
+    networks:
+      - net
+
   redis:
     image: redis
     ports:
