@@ -6,10 +6,10 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 import requests
 
 def file_upload():
-    url = 'http://127.0.0.1:8000/upload/'
+    url = 'http://194.67.67.67:6060/upload/'
     path = os.path.join(pathlib.Path.cwd(), '123.jpeg')
-    # file = open(path, 'rb')
-    file = SimpleUploadedFile('file.mp4', b"file_content", content_type="video/mp4")
+    file = open(path, 'rb')
+    # file = SimpleUploadedFile('file.mp4', b"file_content", content_type="video/mp4")
     file = {'file': file}
     headers = {
         'Content-Type': 'multipart/data'

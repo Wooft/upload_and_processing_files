@@ -5,7 +5,6 @@ services:
     build: .
     env_file:
       - .env
-#    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
     command: >
       sh -c "python manage.py collectstatic --noinput &&
              python manage.py migrate &&
@@ -22,17 +21,25 @@ services:
     env_file:
       - .env
     hostname: db
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_DB: $DB_NAME
       POSTGRES_USER: $DB_USER
       POSTGRES_PASSWORD: $DB_PASSWORD
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d files" ]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+      - ./logs:/var/log
     networks:
       - net
+
 
   nginx:
     build: ./nginx
